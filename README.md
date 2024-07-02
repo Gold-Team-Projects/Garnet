@@ -1,5 +1,5 @@
 # Garnet-Network
-A CDN-WAN hybrid chat network
+A CDN-WAN hybrid chat network.
 ## Concept
 **Garnet** is a hybrid chat network modeled after the internet. It relies on a **C**ontent **D**elivery **N**etwork (also called a CDN) of 
 **G**arnet **A**ddress and **S**ervice **P**roviders (also called GASPs). 
