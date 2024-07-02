@@ -92,6 +92,7 @@ bool gasp_already_connected(void) {
 	return true;
 }
 
-void handle() {
-
+void handle() 
+{
+	
 }
