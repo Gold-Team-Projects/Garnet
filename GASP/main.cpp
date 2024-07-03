@@ -94,5 +94,10 @@ bool gasp_already_connected(void) {
 
 void handle() 
 {
+	/*
+	 * Port 2044: GASP Network Communications (General Polls, network joins, etc)
+	 * Port 2045: GASP Command Communications (Forwarding, specific polls, etc)
+	 * Port 2046: Client Communications (Addresses, routing, recieving stored messages)
+	 */
 	
 }
