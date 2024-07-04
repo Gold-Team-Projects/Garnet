@@ -30,13 +30,14 @@ struct header {
 	uint24_t	message_size;
 } __attribute__((packed)); // 24 bytes
 
-enum class req_type 
+enum class qry_type 
 {
 	// GASPs
-	address = 0x00,
+	deal_address = 0x00, // Get an address for the client
+	ret_address = 0x01 // Get an address based on name
 
 };
-struct req_message {
+struct qry_message {
 	header		header;
 	uint8_t		subject;
 	byte		buffer_a[64];
@@ -44,11 +45,19 @@ struct req_message {
 	byte		buffer_c[32];
 	byte		buffer_d[32];
 } __attribute__((packed)); // 217 bytes
-void initialize_req(req_message* req, req_type type);
+void initialize_qry(qry_message* query, qry_type type);
 
 struct png_message {
 	header	header;
 	byte	padding;
 } __attribute__((packed)); // 25 bytes
+
+struct ent_message {
+	header		header;
+	uint8_t		s_address[4];
+	uint8_t		r_address[4];
+	uint8_t		stage;
+	byte		buffer[128];
+} __attribute__((packed)); 33 + 128
 
 #endif
