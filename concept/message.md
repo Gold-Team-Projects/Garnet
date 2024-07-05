@@ -1,19 +1,7 @@
 # Message Concept
-**Messages** are sent from client to client to communicate.
+**Messages** are sent between Garnet nodes to communicate.
 ## Universal Headers
-```c
-struct universal_header {
-    uint16_t    s_gasp;      // Sender GASP
-    uint48_t    s_uid;      // Sender Unique ID
-    uint32_t    r_gasp;      // Receiver GASP
-    uint16_t    r_uid;      // Receiver Unique ID
-    uint16_t    year;       // Year sent
-    uint8_t     month;      // Month sent
-    uint8_t     day;        // Day sent
-    uint8_t     min;        // Minute sent
-    uint8_t     sec;        // Second sent
-} __attribute__((packed));
-```
+
 ## SND 
 SND messages send content from one address to another.
 ### Headers

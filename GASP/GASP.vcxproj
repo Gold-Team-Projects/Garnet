@@ -76,12 +76,6 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="messages.cpp" />
-    <ClCompile Include="network.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="messages.hpp" />
-    <ClInclude Include="network.hpp" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

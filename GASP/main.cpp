@@ -9,14 +9,20 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-using namespace std;
+#include "../lib/messages.hpp"
+#include "../lib/network.hpp"
+
 using std::string;
-using libsocket::inet_stream;
+using std::cout;
+using std::cin;
+using std::ofstream;
+using std::ifstream;
 
 #define VERSION "0.0.0"
 #define FORMAT(x, y) "[GASP " << x << " - " << y << "] "
 
 bool gasp_already_connected(void);
+void handle(void);
 
 int main(int argc, char *argv[])
 {
@@ -61,43 +67,39 @@ int main(int argc, char *argv[])
 		}
 		else {
 			cout << FORMAT("?????", "?????") << "Enter an IP of any connected GASP: ";
-			char[16] ip;
+
+			char ip[16];
 			cin >> ip;
 
-			string buffer;
-
-			libsocket::inet_stream sock(ip, "2044", LIBSOCKET_IPv4);
+			byte buffer[512];
 			
-			sock << "ENT 0";
-			sock >> buffer;
+			qry_message query;
 
-			if (buffer == "STP 1") { cout << "Network is full."; }
-
-			// buffer is RES 1
-			cout << FORMAT("?????", "?????") << "Enter activation key: ";
-			string answer;
-			cin >> answer;
-
-			sock << "ENT 1 " << answer;
-			sock >> buffer;
-			if (buffer[4] != '1') { /*fail*/ }
+			address sender;
+			address receiver;
+			sender.gasp = 0;
+			sender.uid.value = 0;
+			receiver.gasp = 0;
+			receiver.uid.value = 0;
+			
+			initialize_header(&query._header, QRY, sender, receiver);
 
 		}
 	}
 }
 
 bool gasp_already_connected(void) {
-	ifstream s_adrs("server-addresses");
-	if (s_adrs.fail()) { return false; }
+	ifstream data("data.txt");
+	if (data.fail()) { return false; }
 	return true;
 }
 
-void handle() 
+void handle(void) 
 {
 	/*
 	 * Port 2044: GASP Network Communications (General Polls, network joins, etc)
 	 * Port 2045: GASP Command Communications (Forwarding, specific polls, etc)
-	 * Port 2046: Client Communications (Addresses, routing, recieving stored messages)
+	 * Port 2046: Client Communications (Addresses, routing, receiving stored messages)
 	 */
 	
 }
