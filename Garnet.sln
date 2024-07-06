@@ -32,6 +32,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GTC", "GTC\GTC.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib", "lib\lib.vcxitems", "{40136619-ED98-4FBE-A5A9-BD2AD9DBB046}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bin", "bin", "{64746E79-6FF4-4785-8A5D-F8A8C73F2B00}"
+	ProjectSection(SolutionItems) = preProject
+		bin\Makefile = bin\Makefile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -206,11 +213,48 @@ Global
 		{68A6CED9-DA0D-4F20-9322-4EBD12C5DDDD}.Release|x86.ActiveCfg = Release|x86
 		{68A6CED9-DA0D-4F20-9322-4EBD12C5DDDD}.Release|x86.Build.0 = Release|x86
 		{68A6CED9-DA0D-4F20-9322-4EBD12C5DDDD}.Release|x86.Deploy.0 = Release|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|Any CPU.Build.0 = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM.Build.0 = Debug|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM.Deploy.0 = Debug|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM64.Build.0 = Debug|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x64.ActiveCfg = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x64.Build.0 = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x64.Deploy.0 = Debug|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x86.ActiveCfg = Debug|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x86.Build.0 = Debug|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Debug|x86.Deploy.0 = Debug|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|Any CPU.ActiveCfg = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|Any CPU.Build.0 = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|Any CPU.Deploy.0 = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM.ActiveCfg = Release|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM.Build.0 = Release|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM.Deploy.0 = Release|ARM
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM64.ActiveCfg = Release|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM64.Build.0 = Release|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|ARM64.Deploy.0 = Release|ARM64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x64.ActiveCfg = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x64.Build.0 = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x64.Deploy.0 = Release|x64
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x86.ActiveCfg = Release|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x86.Build.0 = Release|x86
+		{EF9E75C4-2F31-477B-BBFD-6A2314CF5CD2}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{64746E79-6FF4-4785-8A5D-F8A8C73F2B00} = {2BD43CEF-AB1A-4170-8C4A-1C958105B6AE}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3A9E430-1D9E-4726-8C4B-762AE35B2902}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		lib\lib.vcxitems*{40136619-ed98-4fbe-a5a9-bd2ad9dbb046}*SharedItemsImports = 9
+		lib\lib.vcxitems*{ef9e75c4-2f31-477b-bbfd-6a2314cf5cd2}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

@@ -14,6 +14,9 @@ struct address {
 	uint16_t gasp;
 	uint48_t uid;
 } __attribute__((packed));
+struct ipv4 {
+	uint8_t octet1, octet2, octet3, octet4;
+} __attribute__((packed));
 
 enum message_type
 {
@@ -25,6 +28,8 @@ enum message_type
 struct header {
 	address		sender;
 	address		receiver;
+	ipv4		sender_ip;
+	uint16_t	response_port;
 
 	uint16_t    year;
 	uint8_t     month;

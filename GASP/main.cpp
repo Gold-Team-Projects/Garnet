@@ -102,4 +102,9 @@ void handle(void)
 	 * Port 2046: Client Communications (Addresses, routing, receiving stored messages)
 	 */
 	
+	Socket port_2044 = new Socket(2044);
+	Socket port_2045 = new Socket(2045);
+	Socket port_2046 = new Socket(2046);
+
+	
 }
