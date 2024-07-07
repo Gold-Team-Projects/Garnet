@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <variant>
+
+using std::variant;
+
 struct _uint48_t {
 	uint64_t value : 48;
 } __attribute__((packed));
@@ -26,6 +30,8 @@ enum message_type
 	ENT = 0x03
 };
 struct header {
+	uint8_t		message_type;
+
 	address		sender;
 	address		receiver;
 	ipv4		sender_ip;
@@ -37,15 +43,10 @@ struct header {
 	uint8_t		hour;
 	uint8_t     min;
 	uint8_t     sec;
-
-	uint8_t		message_type;
 } __attribute__((packed)); // 24 bytes
 void initialize_header(header* header, message_type type, address sender, address receiver);
 void initialize_time(header* header);
 
-struct message {
-	header _header;
-} __attribute__((packed));
 
 enum query_type 
 {
@@ -54,7 +55,8 @@ enum query_type
 	GET_USR_BY_ADR				= 0x02,
 	CHECK_NETWORK_ACCEPTANCE	= 0x03
 };
-struct qry_message : message {
+struct qry_message {
+	header		_header;
 	uint8_t		subject;
 	byte		buffer_a[64];
 	byte		buffer_b[64];
@@ -64,21 +66,24 @@ struct qry_message : message {
 void initialize_qry(qry_message* query, query_type type);
 
 struct png_message {
+	header	_header;
 	byte	padding;
 } __attribute__((packed)); // 25 bytes
 
 struct ent_message {
-	uint8_t		s_address[4];
-	uint8_t		r_address[4];
+	header		_header;
 	uint8_t		stage;
 	byte		buffer[128];
 } __attribute__((packed)); // 161 bytes
 
 struct res_message {
+	header	_header;
 	byte	success;
 	byte	buffer_a[128];
 	byte	buffer_b[128];
 	byte	buffer_c[256];
 } __attribute__((packed)); //
 
+
+typedef variant<res_message, qry_message, png_message, ent_message> message;
 #endif

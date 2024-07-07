@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <variant>
 
 #include "../lib/messages.hpp"
 #include "../lib/network.hpp"
@@ -17,6 +18,7 @@ using std::cout;
 using std::cin;
 using std::ofstream;
 using std::ifstream;
+using std::get;
 
 #define VERSION "0.0.0"
 #define FORMAT(x, y) "[GASP " << x << " - " << y << "] "
@@ -70,19 +72,51 @@ int main(int argc, char *argv[])
 
 			char ip[16];
 			cin >> ip;
-
-			byte buffer[512];
 			
 			qry_message query;
 
-			address sender;
-			address receiver;
-			sender.gasp = 0;
-			sender.uid.value = 0;
-			receiver.gasp = 0;
-			receiver.uid.value = 0;
+			address sender = { 0, .uid.value = 0 };
+			address receiver = { 0, .uid.value = 0 };
 			
 			initialize_header(&query._header, QRY, sender, receiver);
+			initialize_qry(&query, CHECK_NETWORK_JOINABILITY);
+
+			Socket sock = new Socket(2044, new string(ip));
+			sock << query;
+			
+			message buffer;
+			sock >> buffer;
+
+			if (!msg_is<res_message>(buffer)) 
+			{
+				// something happened
+			}
+
+			res_message res = get<res_message>();
+			if (res.success != 1) { 
+				switch (res.buffer_a[0]) 
+				{
+					case 0x00:
+						// network full
+						break;
+				}
+			}
+
+			receiver.gasp = res._header.sender.gasp;
+
+			delete query;
+			delete res;
+			delete buffer;
+
+			ent_message ent;
+			initialize_header(&ent._header, ENT, sender, receiver);
+			ent.stage = 0;
+			
+			cout << FORMAT("?????", "?????") << "Enter the network key: ";
+			cin >> ent.buffer[0];
+
+			sock << ent;
+
 
 		}
 	}
@@ -101,10 +135,6 @@ void handle(void)
 	 * Port 2045: GASP Command Communications (Forwarding, specific polls, etc)
 	 * Port 2046: Client Communications (Addresses, routing, receiving stored messages)
 	 */
-	
-	Socket port_2044 = new Socket(2044);
-	Socket port_2045 = new Socket(2045);
-	Socket port_2046 = new Socket(2046);
 
 	
 }
