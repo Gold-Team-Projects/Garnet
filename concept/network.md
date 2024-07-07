@@ -1,5 +1,7 @@
-# Network Concept
-## GSPs
-Garnet service providers opterate on the Garnet Service Network to:
-- Assign addresses
-- Keep messages while a client is offline
+# Network Concepts
+## Nodes
+Any device that is connected to the Garnet Network is called a **node**.
+### Clients
+**Clients** are the nodes that users connect from.
+## GASPs
+**G**arnet **A**ddress and **S**ervice **P**roviders 
