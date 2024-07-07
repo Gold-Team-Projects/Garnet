@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include "messages.h"
+#include "network.h"
 
 #define VERSION "0.1.0"
 
@@ -38,6 +40,7 @@ int main(int argc, char *argv[])
         cin >> buffer;
 
         data.close();
+
     }
     else 
     {
