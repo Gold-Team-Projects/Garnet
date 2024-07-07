@@ -51,7 +51,8 @@ enum query_type
 	GET_NEW_ADR					= 0x00,
 	GET_ADR_BY_USR				= 0x01,
 	GET_USR_BY_ADR				= 0x02,
-	CHECK_NETWORK_ACCEPTANCE	= 0x03
+	CHECK_NETWORK_ACCEPTANCE	= 0x03,
+	GET_ADR_BLOCK				= 0x04
 };
 struct qry_message {
 	header		_header;

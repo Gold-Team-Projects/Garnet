@@ -8,8 +8,8 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include "messages.h"
-#include "network.h"
+#include "messages.hpp"
+#include "network.hpp"
 
 #define VERSION "0.1.0"
 
@@ -24,23 +24,22 @@ int main(int argc, char *argv[])
     system("clear");
     printf("[GTC] Garnet Terminal Client v%s starting...\n", VERSION);
     
-    char* buffer;
-    asprintf(&buffer, "%sdata.txt", path);
-    ifstream _data(buffer);
-    if (_data.fail())
+    char* buffer1;
+    asprintf(&buffer1, "%sdata.txt", path);
+    fstream data(buffer1);
+    delete buffer1;
+
+    if (data.fail())
     {
         printf("[GTC] First time detected!\n");
-        _data.close();
-
-        asprintf(&buffer, "%sdata.txt", path);
-        ofstream data(buffer);
-
-        buffer = "";
         printf("[GTC] Enter a GASP IP: ");
-        cin >> buffer;
 
-        data.close();
+        char*   buffer2;
+        cin >>  buffer2;
 
+        Socket sock = new Socket(new string(buffer2), 2046);
+        
+        
     }
     else 
     {

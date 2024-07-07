@@ -47,3 +47,5 @@
 } __attribute__((packed));
  ```
 QRY messages are used to get information from a node.
+### ERR
+ERR messages are sent when errors are detected.
