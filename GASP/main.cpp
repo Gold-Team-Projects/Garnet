@@ -9,9 +9,10 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <variant>
+#include <boost/format.hpp>
 
-#include "../lib/messages.hpp"
-#include "../lib/network.hpp"
+#include "messages.hpp"
+#include "network.hpp"
 
 using std::string;
 using std::cout;
@@ -19,6 +20,7 @@ using std::cin;
 using std::ofstream;
 using std::ifstream;
 using std::get;
+using boost::format;
 
 #define VERSION "0.0.0"
 #define FORMAT(x, y) "[GASP " << x << " - " << y << "] "
@@ -29,7 +31,7 @@ void handle(void);
 int main(int argc, char *argv[])
 {
 	if (gasp_already_connected()) {
-		cout << "Connected";
+		handle();
 	}
 	else {
 		cout << FORMAT("?????", "?????") << "Not connected to any networks.\n";
@@ -132,14 +134,13 @@ int main(int argc, char *argv[])
 
 			/*
 			A - Data
-			0-1: GASP ID
-			2: Name size
-			3-4: Network Size
+			0: GASP ID
+			1: Name size
 			B - Name
-			C - Address block 0
+			C - null
 			*/
 
-			uint16_t gasp_id = (uint16_t)res2.buffer_a[1] << 8 | res2.buffer_a[0];
+			uint8_t gasp_id = res2.buffer_a[0];
 
 			char* name;
 			for (int i = 0; i < res2.buffer_a[2]; ++i) {
@@ -147,15 +148,16 @@ int main(int argc, char *argv[])
 			}
 
 			ofstream data("./data.txt");
-			data << gasp_id;
-			data << name;
-			data << ent.buffer;
+			data << gasp_id << '\n';
+			data << name << '\n';
+			data << ent.buffer << '\n';
 
 			// still have to go through block 0
 
 			sender.gasp = gasp_id;
 			byte[512] block;
-			for (int j = 1; j < 128; ++j) {
+			int addresses = 0;
+			for (int j = 0; j < 128; ++j) {
 				qry_message block_query;
 				initialize_header(&block_query, QRY, sender, receiver);
 				initialize_qry(&query, GET_ADDRESS_BLOCK);
@@ -172,13 +174,21 @@ int main(int argc, char *argv[])
 
 				delete res3;
 				delete buffer3;
+				delete block_query;
 
 				for (int k = 0; k < 16; ++k) {
-					for (int p = 0; p < 4; ++p) {
-						
-					}
+					data << (format("%i => %i%.%i%.%i%.%i%\n") % address 
+						% block[k + 0] 
+						% block[k + 1] 
+						% block[k + 2] 
+						% block[k + 3]).str();
+					++addresses;
 				}
 			}
+			data.close();
+			delete data;
+			delete block;
+			delete addresses;
 			cout << FORMAT(gasp_id, name) << "Successfully connected to the network!";
 		}
 		handle();

@@ -8,15 +8,15 @@
 
 using std::variant;
 
-struct _uint48_t {
-	uint64_t value : 48;
+struct _uint56_t {
+	uint64_t value : 56;
 } __attribute__((packed));
-typedef _uint48_t uint48_t;
+typedef _uint56_t uint56_t;
 typedef uint8_t byte;
 
 struct address {
-	uint16_t gasp;
-	uint48_t uid;
+	uint8_t gasp;
+	uint56_t uid;
 } __attribute__((packed));
 struct ipv4 {
 	uint8_t octet1, octet2, octet3, octet4;
