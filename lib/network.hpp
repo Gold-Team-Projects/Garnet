@@ -6,46 +6,40 @@
 #include <string.h>
 #include <map>
 #include <boost/asio.hpp>
+#include <boost/any.hpp>
 
 #include "messages.hpp"
 
-template <typename T>
-void to_bytes(const T& value, byte* buffer);
+using namespace boost::asio;
 
-template <typename T>
-T from_bytes(byte* buffer);
 
 void print_bytes(byte* buffer, size_t size);
 
-message transform(byte* buffer);
-message_type msg_typeof(message msg);
-
-template <typename T>
-bool msg_is<T>(message msg);
+message_type msg_typeof(byte* msg);
+bool msg_is(byte* msg, message_type type);
 
 class Socket 
 {
 	public:
-		Socket(uint16_t port, std::string url) 
+		Socket(uint16_t port, std::string url)
 		{
 			this->pointer = this->buffer;
 			this->port = port;
 			this->url = url;
 		}
-		void operator<<(void data) 
+		void operator<<(byte* data) 
 		{
-			to_bytes(data, this->pointer);
-			// send buffer
+			
 		}
-		message operator>>() 
+		void operator>>(byte* buffer) 
 		{
-			return transform(pointer);
+			memcpy(buffer, this->pointer, sizeof(this->buffer));
 		}
 	private:
-		byte	buffer[512];
-		byte*	pointer;
+		byte		buffer[512];
+		byte*		pointer;
 		std::string url;
-		uint16_t port;
+		uint16_t	port;
 };
 
 #endif

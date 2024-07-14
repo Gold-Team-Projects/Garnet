@@ -8,7 +8,7 @@ typedef unsigned char byte;
 struct test {
     uint8_t a, b, c;
 } __attribute__((packed));
-
+/*
 template <typename T>
 void to_bytes(const T& value, byte* buffer)
 {
@@ -29,7 +29,7 @@ void print_bytes(byte* buffer, size_t size)
     printf("\n");
 }
 
-int main()
+int old_main()
 {
     char a, b, c;
 
@@ -77,4 +77,6 @@ int main()
 
     test t3 = from_bytes<test>(buffer3);
     printf("t3: %i %i %i\n", t3.a, t3.b, t3.c);
-}
+
+    return 0;
+}*/
