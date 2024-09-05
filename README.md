@@ -34,7 +34,7 @@ GSPs have a list of 8 other GSPs and their IP addresses. This is called a routin
 
 This is an example table for a GSP with the ID 8.
 | Index | GUID | IP |
----------------------
+| ----- | ---- | -- |
 | 0 | 9 | 0.0.0.0 |
 | 1 | 10 | 0.0.0.1 |
 | 2 | 12 | 0.0.0.2 |
