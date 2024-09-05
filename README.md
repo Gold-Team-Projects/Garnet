@@ -16,9 +16,10 @@ In this example network (EXN), there are 32 GSPs and 3072 clients (96 for each s
 
 ### Messaging examples
 Client A wants to send the message "Hello" to Client B.
-Client A has a GID of 62@0000-0001. This address contains 2 pieces of information:
+Client A has a GID of `62@0000-0001`. This address contains 2 pieces of information:
 - `62`: This is the local identifier, which is used to to find a specific client out of all the ones connected to the target GSP.
 - `0000-0001`: This is the global identifier. It it used to find the GSP that the client belongs to.
+Client B has a GID of `34@0000-0025`, meaning it is the 34th client belonging to GSP 
 
 ## Terms
 ### Node 
