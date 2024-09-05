@@ -11,15 +11,49 @@ It uses multiple GSPs to process data.
 Garnet uses a P2P Chord network of servers to transfer messages.
 Each server is connected to a number of clients.
 
+## Components
+### GSPs
+Garnet Service Providers are the servers for any Garnet network.
+
 ## Example network
 In this example network (EXN), there are 32 GSPs and 3072 clients (96 for each server).
 
-### Messaging examples
-Client A wants to send the message "Hello" to Client B.
-Client A has a GID of `62@0000-0001`. This address contains 2 pieces of information:
-- `62`: This is the local identifier, which is used to to find a specific client out of all the ones connected to the target GSP.
-- `0000-0001`: This is the global identifier. It it used to find the GSP that the client belongs to.
-Client B has a GID of `34@0000-0025`, meaning it is the 34th client belonging to GSP 
+### The high subnet
+The high subnet is the subnet of GSPs. 
+It's a chord P2P network consisting of up to 256 nodes.
+Each GSP handles clients in a specific geological zone which spans with an area of 100<sup>2</sup> miles.
+
+### The low subnet
+The low subnet is the network of clients.
+Clients normally communicate through GSPs and the high subnet, but in some cases direct communication is needed.
+This network has not specific shape.
+
+### How messages are passed
+In the network, each GSP has a unique ID from 0 to 255.
+GSPs have a list of 8 other GSPs and their IP addresses. This is called a routing table.
+
+This is an example table for a GSP with the ID 8.
+| Index | GUID | IP |
+---------------------
+| 0 | 9 | 0.0.0.0 |
+| 1 | 10 | 0.0.0.1 |
+| 2 | 12 | 0.0.0.2 |
+| 3 | 16 | 0.0.0.3 |
+| 4 | 24 | 0.0.0.4 |
+| 5 | 40 | 0.0.0.5 |
+| 6 | 72 | 0.0.0.6 |
+| 7 | 136 | 0.0.0.7 |
+
+In this example, we will say that the sender (user A) has an id of 68@64.
+User B (the receiver) has an id of 14@136.
+User A's client will send the message to GSP 64.
+GSP 64's closest entry in it's routing table is GSP 128, to it forwards the message there.
+GSP 128 has GSP 136 in its routing table, so it sends the message directly to GSP 136.
+GSP 136 then sends the message to client 14 in its user lookup table.
+
+## Security
+Garnet uses TLS to ensure safe communication between nodes. 
+It also has end-to-end encryption and digital signatures.
 
 ## Terms
 ### Node 
