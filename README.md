@@ -51,9 +51,11 @@ GSP 64's closest entry in it's routing table is GSP 128, to it forwards the mess
 GSP 128 has GSP 136 in its routing table, so it sends the message directly to GSP 136.
 GSP 136 then sends the message to client 14 in its user lookup table.
 
+
+
 ## Security
 Garnet uses TLS to ensure safe communication between nodes. 
-It also has end-to-end encryption and digital signatures.
+It also has end-to-end encryption..
 
 ## Terms
 ### Node 
