@@ -1,15 +1,8 @@
 ﻿using Terminal.Gui;
 using GTC;
 
-class Program
-{
-	public static int Main(string[] args)
-	{
-		Application.Init();
-		Application.Run<MainWindow>();
+Application.Top.Add(new MainWindow());
+Application.Run();
 
-		Application.Shutdown();
-
-		return 0;
-	}
-}
+// Before the application exits, reset Terminal.Gui for clean shutdown
+Application.Shutdown();

@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GASP", "GASP\GASP.csproj", "{2EA0C9F6-5D78-4CF5-B67C-4C5D685B462B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36DA2F92-B3F3-4F19-A8A2-90D1A829617C}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarnetLibrary", "GarnetLibrary\GarnetLibrary.csproj", "{4E0547BB-6DC1-42DD-8AD1-DEF88BD35047}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTC", "GTC\GTC.csproj", "{36374AC9-9CF0-410B-9242-41D81738ABCF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSP", "GSP\GSP.csproj", "{CA9F6826-FBA6-4F60-8791-FF0867FEE168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garnet", "Garnet\Garnet.csproj", "{5B6B6105-5684-4F64-8F19-61E34420E5F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EA0C9F6-5D78-4CF5-B67C-4C5D685B462B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EA0C9F6-5D78-4CF5-B67C-4C5D685B462B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EA0C9F6-5D78-4CF5-B67C-4C5D685B462B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EA0C9F6-5D78-4CF5-B67C-4C5D685B462B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E0547BB-6DC1-42DD-8AD1-DEF88BD35047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E0547BB-6DC1-42DD-8AD1-DEF88BD35047}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E0547BB-6DC1-42DD-8AD1-DEF88BD35047}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E0547BB-6DC1-42DD-8AD1-DEF88BD35047}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36374AC9-9CF0-410B-9242-41D81738ABCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36374AC9-9CF0-410B-9242-41D81738ABCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36374AC9-9CF0-410B-9242-41D81738ABCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36374AC9-9CF0-410B-9242-41D81738ABCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9F6826-FBA6-4F60-8791-FF0867FEE168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9F6826-FBA6-4F60-8791-FF0867FEE168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9F6826-FBA6-4F60-8791-FF0867FEE168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9F6826-FBA6-4F60-8791-FF0867FEE168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B6B6105-5684-4F64-8F19-61E34420E5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B6B6105-5684-4F64-8F19-61E34420E5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B6B6105-5684-4F64-8F19-61E34420E5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B6B6105-5684-4F64-8F19-61E34420E5F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

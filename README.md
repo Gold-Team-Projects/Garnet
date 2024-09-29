@@ -21,7 +21,7 @@ In this example network (EXN), there are 32 GSPs and 3072 clients (96 for each s
 ### The high subnet
 The high subnet is the subnet of GSPs. 
 It's a chord P2P network consisting of up to 256 nodes.
-Each GSP handles clients in a specific geological zone which spans with an area of 100<sup>2</sup> miles.
+Each GSP handles clients that are close to the geographically.
 
 ### The low subnet
 The low subnet is the network of clients.
@@ -55,7 +55,9 @@ GSP 136 then sends the message to client 14 in its user lookup table.
 
 ## Security
 Garnet uses TLS to ensure safe communication between nodes. 
-It also has end-to-end encryption..
+It also has end-to-end encryption.
+
+
 
 ## Terms
 ### Node 
