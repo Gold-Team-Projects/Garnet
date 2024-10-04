@@ -15,15 +15,64 @@ namespace GTC {
     
     public partial class MainWindow : Terminal.Gui.Window {
         
-        private Terminal.Gui.ColorPicker colorPicker;
+        private Terminal.Gui.ColorScheme greenOnBlack;
+        
+        private Terminal.Gui.ColorScheme redOnBlack;
+        
+        private Terminal.Gui.ColorScheme greyOnBlack;
+        
+        private Terminal.Gui.ScrollView scrollView;
+        
+        private Terminal.Gui.TabView tabView;
+        
+        private Terminal.Gui.FrameView frameView;
+        
+        private Terminal.Gui.ScrollView scrollView2;
+        
+        private Terminal.Gui.TextView textView;
+        
+        private Terminal.Gui.StatusBar statusBar;
+        
+        private Terminal.Gui.StatusItem f1EditMe;
+        
+        private Terminal.Gui.MenuBar menuBar;
+        
+        private Terminal.Gui.MenuBarItem fileF9Menu;
+        
+        private Terminal.Gui.MenuItem editMeMenuItem;
         
         private void InitializeComponent() {
-            this.colorPicker = new Terminal.Gui.ColorPicker();
+            this.menuBar = new Terminal.Gui.MenuBar();
+            this.statusBar = new Terminal.Gui.StatusBar();
+            this.textView = new Terminal.Gui.TextView();
+            this.scrollView2 = new Terminal.Gui.ScrollView();
+            this.frameView = new Terminal.Gui.FrameView();
+            this.tabView = new Terminal.Gui.TabView();
+            this.scrollView = new Terminal.Gui.ScrollView();
+            this.greenOnBlack = new Terminal.Gui.ColorScheme();
+            this.greenOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Green, Terminal.Gui.Color.Black);
+            this.greenOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightGreen, Terminal.Gui.Color.Black);
+            this.greenOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Green, Terminal.Gui.Color.Magenta);
+            this.greenOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightGreen, Terminal.Gui.Color.Magenta);
+            this.greenOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
+            this.redOnBlack = new Terminal.Gui.ColorScheme();
+            this.redOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Black);
+            this.redOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Black);
+            this.redOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Red, Terminal.Gui.Color.Brown);
+            this.redOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightRed, Terminal.Gui.Color.Brown);
+            this.redOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.Gray, Terminal.Gui.Color.Black);
+            this.greyOnBlack = new Terminal.Gui.ColorScheme();
+            this.greyOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.DarkGray, Terminal.Gui.Color.Black);
+            this.greyOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.DarkGray, Terminal.Gui.Color.Black);
+            this.greyOnBlack.Focus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Black, Terminal.Gui.Color.DarkGray);
+            this.greyOnBlack.HotFocus = new Terminal.Gui.Attribute(Terminal.Gui.Color.Black, Terminal.Gui.Color.DarkGray);
+            this.greyOnBlack.Disabled = new Terminal.Gui.Attribute(Terminal.Gui.Color.DarkGray, Terminal.Gui.Color.Black);
             this.Width = Dim.Fill(0);
             this.Height = Dim.Fill(0);
             this.X = 0;
             this.Y = 0;
             this.Visible = true;
+            this.ColorScheme = this.greenOnBlack;
             this.Modal = false;
             this.IsMdiContainer = false;
             this.Border.BorderStyle = Terminal.Gui.BorderStyle.Single;
@@ -31,16 +80,108 @@ namespace GTC {
             this.Border.Effect3DBrush = null;
             this.Border.DrawMarginFrame = true;
             this.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Title = "";
-            this.colorPicker.Width = 32;
-            this.colorPicker.Height = 5;
-            this.colorPicker.X = 0;
-            this.colorPicker.Y = 0;
-            this.colorPicker.Visible = true;
-            this.colorPicker.Data = "colorPicker";
-            this.colorPicker.Text = "Hello!";
-            this.colorPicker.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Add(this.colorPicker);
+            this.Title = "GTC v0.0";
+            this.scrollView.Width = Dim.Percent(80f);
+            this.scrollView.Height = Dim.Percent(80f);
+            this.scrollView.X = Pos.Right(tabView);
+            this.scrollView.Y = 0;
+            this.scrollView.Visible = true;
+            this.scrollView.ContentSize = new Size(20,10);
+            this.scrollView.Data = "scrollView";
+            this.scrollView.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.scrollView);
+            this.tabView.Width = Dim.Percent(20f);
+            this.tabView.Height = Dim.Percent(65f);
+            this.tabView.X = 0;
+            this.tabView.Y = 1;
+            this.tabView.Visible = true;
+            this.tabView.Data = "tabView";
+            this.tabView.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.tabView.MaxTabTextWidth = 30u;
+            this.tabView.Style.ShowBorder = true;
+            this.tabView.Style.ShowTopLine = true;
+            this.tabView.Style.TabsOnBottom = false;
+            Terminal.Gui.TabView.Tab tabViewchannels;
+            tabViewchannels = new Terminal.Gui.TabView.Tab("Channels", new View());
+            tabViewchannels.View.Width = Dim.Fill();
+            tabViewchannels.View.Height = Dim.Fill();
+            tabView.AddTab(tabViewchannels, false);
+            Terminal.Gui.TabView.Tab tabViewservers;
+            tabViewservers = new Terminal.Gui.TabView.Tab("Servers", new View());
+            tabViewservers.View.Width = Dim.Fill();
+            tabViewservers.View.Height = Dim.Fill();
+            tabView.AddTab(tabViewservers, false);
+            Terminal.Gui.TabView.Tab tabViewnetworks;
+            tabViewnetworks = new Terminal.Gui.TabView.Tab("Networks", new View());
+            tabViewnetworks.View.Width = Dim.Fill();
+            tabViewnetworks.View.Height = Dim.Fill();
+            tabView.AddTab(tabViewnetworks, false);
+            this.tabView.ApplyStyleChanges();
+            this.Add(this.tabView);
+            this.frameView.Width = 28;
+            this.frameView.Height = Dim.Percent(15f);
+            this.frameView.X = 0;
+            this.frameView.Y = Pos.Bottom(tabView);
+            this.frameView.Visible = true;
+            this.frameView.Data = "frameView";
+            this.frameView.Border.BorderStyle = Terminal.Gui.BorderStyle.Single;
+            this.frameView.Border.Effect3D = false;
+            this.frameView.Border.Effect3DBrush = null;
+            this.frameView.Border.DrawMarginFrame = true;
+            this.frameView.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.frameView.Title = "Menu";
+            this.Add(this.frameView);
+            this.scrollView2.Width = 10;
+            this.scrollView2.Height = 5;
+            this.scrollView2.X = 0;
+            this.scrollView2.Y = 0;
+            this.scrollView2.Visible = true;
+            this.scrollView2.ContentSize = new Size(20,10);
+            this.scrollView2.Data = "scrollView2";
+            this.scrollView2.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.frameView.Add(this.scrollView2);
+            this.textView.Width = Dim.Fill(0);
+            this.textView.Height = Dim.Fill(1);
+            this.textView.X = 0;
+            this.textView.Y = Pos.Bottom(scrollView);
+            this.textView.Visible = true;
+            this.textView.ColorScheme = this.greyOnBlack;
+            this.textView.AllowsTab = true;
+            this.textView.AllowsReturn = true;
+            this.textView.WordWrap = false;
+            this.textView.Data = "textView";
+            this.textView.Text = "Heya";
+            this.textView.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.textView);
+            this.statusBar.Width = Dim.Fill(0);
+            this.statusBar.Height = 1;
+            this.statusBar.X = 0;
+            this.statusBar.Y = Pos.AnchorEnd(1);
+            this.statusBar.Visible = true;
+            this.statusBar.Data = "statusBar";
+            this.statusBar.Text = "";
+            this.statusBar.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.f1EditMe = new Terminal.Gui.StatusItem(((Terminal.Gui.Key)(1048588u)), "F1 - Edit Me", null);
+            this.statusBar.Items = new Terminal.Gui.StatusItem[] {
+                    this.f1EditMe};
+            this.Add(this.statusBar);
+            this.menuBar.Width = Dim.Fill(0);
+            this.menuBar.Height = 1;
+            this.menuBar.X = 0;
+            this.menuBar.Y = 0;
+            this.menuBar.Visible = true;
+            this.menuBar.Data = "menuBar";
+            this.menuBar.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.fileF9Menu = new Terminal.Gui.MenuBarItem();
+            this.fileF9Menu.Title = "_File (F9)";
+            this.editMeMenuItem = new Terminal.Gui.MenuItem();
+            this.editMeMenuItem.Title = "Edit Me";
+            this.editMeMenuItem.Data = "editMeMenuItem";
+            this.fileF9Menu.Children = new Terminal.Gui.MenuItem[] {
+                    this.editMeMenuItem};
+            this.menuBar.Menus = new Terminal.Gui.MenuBarItem[] {
+                    this.fileF9Menu};
+            this.Add(this.menuBar);
         }
     }
 }
