@@ -5,7 +5,7 @@ Application.Init();
 
 try
 {
-    Application.Run(new MainWindow());
+    Application.Run<MainWindow>();
 }
 finally
 {

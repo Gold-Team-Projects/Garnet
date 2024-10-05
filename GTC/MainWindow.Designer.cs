@@ -21,13 +21,13 @@ namespace GTC {
         
         private Terminal.Gui.ColorScheme greyOnBlack;
         
-        private Terminal.Gui.ScrollView scrollView;
-        
         private Terminal.Gui.TabView tabView;
+        
+        private Terminal.Gui.ScrollView messagesView;
         
         private Terminal.Gui.FrameView frameView;
         
-        private Terminal.Gui.ScrollView scrollView2;
+        private Terminal.Gui.ScrollView scrollingMenu;
         
         private Terminal.Gui.TextView textView;
         
@@ -45,10 +45,10 @@ namespace GTC {
             this.menuBar = new Terminal.Gui.MenuBar();
             this.statusBar = new Terminal.Gui.StatusBar();
             this.textView = new Terminal.Gui.TextView();
-            this.scrollView2 = new Terminal.Gui.ScrollView();
+            this.scrollingMenu = new Terminal.Gui.ScrollView();
             this.frameView = new Terminal.Gui.FrameView();
+            this.messagesView = new Terminal.Gui.ScrollView();
             this.tabView = new Terminal.Gui.TabView();
-            this.scrollView = new Terminal.Gui.ScrollView();
             this.greenOnBlack = new Terminal.Gui.ColorScheme();
             this.greenOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Green, Terminal.Gui.Color.Black);
             this.greenOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightGreen, Terminal.Gui.Color.Black);
@@ -81,15 +81,6 @@ namespace GTC {
             this.Border.DrawMarginFrame = true;
             this.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Title = "GTC v0.0";
-            this.scrollView.Width = Dim.Percent(80f);
-            this.scrollView.Height = Dim.Percent(80f);
-            this.scrollView.X = Pos.Right(tabView);
-            this.scrollView.Y = 0;
-            this.scrollView.Visible = true;
-            this.scrollView.ContentSize = new Size(20,10);
-            this.scrollView.Data = "scrollView";
-            this.scrollView.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Add(this.scrollView);
             this.tabView.Width = Dim.Percent(20f);
             this.tabView.Height = Dim.Percent(65f);
             this.tabView.X = 0;
@@ -118,8 +109,17 @@ namespace GTC {
             tabView.AddTab(tabViewnetworks, false);
             this.tabView.ApplyStyleChanges();
             this.Add(this.tabView);
-            this.frameView.Width = 28;
-            this.frameView.Height = Dim.Percent(15f);
+            this.messagesView.Width = Dim.Percent(80f);
+            this.messagesView.Height = Dim.Percent(80f);
+            this.messagesView.X = Pos.Right(tabView);
+            this.messagesView.Y = 1;
+            this.messagesView.Visible = true;
+            this.messagesView.ContentSize = new Size(20,10);
+            this.messagesView.Data = "messagesView";
+            this.messagesView.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.messagesView);
+            this.frameView.Width = Dim.Percent(20f);
+            this.frameView.Height = Dim.Percent(15f) + 1;
             this.frameView.X = 0;
             this.frameView.Y = Pos.Bottom(tabView);
             this.frameView.Visible = true;
@@ -131,26 +131,26 @@ namespace GTC {
             this.frameView.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.frameView.Title = "Menu";
             this.Add(this.frameView);
-            this.scrollView2.Width = 10;
-            this.scrollView2.Height = 5;
-            this.scrollView2.X = 0;
-            this.scrollView2.Y = 0;
-            this.scrollView2.Visible = true;
-            this.scrollView2.ContentSize = new Size(20,10);
-            this.scrollView2.Data = "scrollView2";
-            this.scrollView2.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.frameView.Add(this.scrollView2);
+            this.scrollingMenu.Width = Dim.Fill(0);
+            this.scrollingMenu.Height = Dim.Fill(0);
+            this.scrollingMenu.X = 0;
+            this.scrollingMenu.Y = 0;
+            this.scrollingMenu.Visible = true;
+            this.scrollingMenu.ContentSize = new Size(20,10);
+            this.scrollingMenu.Data = "scrollingMenu";
+            this.scrollingMenu.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.frameView.Add(this.scrollingMenu);
             this.textView.Width = Dim.Fill(0);
             this.textView.Height = Dim.Fill(1);
             this.textView.X = 0;
-            this.textView.Y = Pos.Bottom(scrollView);
+            this.textView.Y = Pos.Bottom(messagesView);
             this.textView.Visible = true;
             this.textView.ColorScheme = this.greyOnBlack;
             this.textView.AllowsTab = true;
             this.textView.AllowsReturn = true;
             this.textView.WordWrap = false;
             this.textView.Data = "textView";
-            this.textView.Text = "Heya";
+            this.textView.Text = "";
             this.textView.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Add(this.textView);
             this.statusBar.Width = Dim.Fill(0);
